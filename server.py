@@ -5,6 +5,7 @@ import io
 
 HOST, PORT = "0.0.0.0", 8000
 
+
 def receive_image():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((HOST, PORT))
@@ -22,6 +23,7 @@ def receive_image():
             img.show()  # You can save or process the image as needed
 
         conn.close()
+
 
 if __name__ == "__main__":
     receive_image()
