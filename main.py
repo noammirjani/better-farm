@@ -21,25 +21,45 @@ def send_image_to_pc(frame):
         s.sendall(image_data)
 
 
-def main():
-    cap = cv2.VideoCapture(0)
-    global previous_frame
-    ret, previous_frame = cap.read()
+def open_camera():
+    ap = cv2.VideoCapture(0)
+    if not ap.isOpened():
+        raise IOError("Cannot open webcam")
+    return ap
+
+
+def close_camera(cap):
+    cap.release()
+    cv2.destroyAllWindows()
+
+
+def run(cap):
+    ret, pre_frame = cap.read()
 
     while True:
         ret, current_frame = cap.read()
 
-        if detect_motion(current_frame, previous_frame) and detect_bird(current_frame):
+        if detect_motion(current_frame, pre_frame) and detect_bird(current_frame):
             print("Motion detected, and a bird has been spotted!")
             send_image_to_pc(current_frame)
             user_input = input("Do you want to continue? (yes/no): ").strip().lower()
             if user_input != 'yes':
                 break
 
-        previous_frame = current_frame.copy()
+        pre_frame = current_frame.copy()
 
-    cap.release()
-    cv2.destroyAllWindows()
+
+def main():
+    cap = None
+    try:
+        cap = open_camera()
+        run(cap)
+    except KeyboardInterrupt:
+        print("Program stopped by user.")
+    except Exception as e:
+        print("An error occurred: ", e)
+    finally:
+        close_camera(cap)
 
 
 if __name__ == "__main__":

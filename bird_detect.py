@@ -4,6 +4,8 @@ import numpy as np
 
 
 """
+**** to run this file you need to download yolov3.weights, limk in the requirements file  ****
+
 detect_bird - gets an image and returns True if a bird is detected in the image, False otherwise.
 
 
@@ -11,6 +13,8 @@ main - need to run by the following command:
 python main.py -i <image_path> -c <config_path> -w <weights_path> -cl <classes_path>
 it will show the image with the detected objects signed with a bounding box and the class name.
 """
+
+
 def parse_arguments():
     ap = argparse.ArgumentParser()
     ap.add_argument('-i', '--image', required=True, help='path to input image')
