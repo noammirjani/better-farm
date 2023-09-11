@@ -1,0 +1,5 @@
+.idea
+venv
+yolo_data/yolov3.weights
+*.jpg
+*.png
