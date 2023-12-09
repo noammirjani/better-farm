@@ -3,6 +3,7 @@ import cv2
 motion_threshold = 8000
 
 
+# Detects motion between the current and previous frames.
 def detect_motion(current_frame, previous_frame):
     current_gray = cv2.cvtColor(current_frame, cv2.COLOR_BGR2GRAY)
     previous_gray = cv2.cvtColor(previous_frame, cv2.COLOR_BGR2GRAY)
@@ -15,5 +16,3 @@ def detect_motion(current_frame, previous_frame):
             return True
 
     return False
-
-

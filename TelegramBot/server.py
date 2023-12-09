@@ -4,18 +4,20 @@ import re
 
 app = Flask(__name__)
 
-TOKEN = '6420796744:AAEBpW5TojGDtAwscOI3uqaHSCCSjTdL9X8'
-SERVER_URL = "https://b25d-82-80-173-170.ngrok-free.app"
+TOKEN = '6660002426:AAGPvSnzcppqv414X6ppk9wQYttaA0tT5Os'
+SERVER_URL = "https://f234-147-235-200-167.ngrok.io"
 BASE_URL = f'https://api.telegram.org/bot{TOKEN}/setWebhook?url={SERVER_URL}'
 requests.get(BASE_URL)
 PORT = 5002
 
 
+# Indicates the server is running.
 @app.route('/sanity')
 def sanity():
     return "Server is running"
 
 
+# Extracts chat_id and text from the received message.
 def parse_message(message):
     print("message-->", message)
     chat_id = message['message']['chat']['id']
@@ -25,6 +27,7 @@ def parse_message(message):
     return chat_id, txt
 
 
+# Sends a message to a specific chat_id.
 def tel_send_message(chat_id, text):
     url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
     payload = {
@@ -37,6 +40,7 @@ def tel_send_message(chat_id, text):
     return r
 
 
+# Handles incoming messages and responds accordingly.
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -56,6 +60,7 @@ def index():
         return "<h1>Welcome!</h1>"
 
 
+# Handles detected events and sends reports to the chat_id
 @app.route('/detected', methods=['GET', 'POST'])
 def report_detection():
     if request.method == 'POST':
@@ -78,5 +83,10 @@ def report_detection():
         return "<h1>Nothing to report.</h1>"
 
 
-if __name__ == '__main__':
+def run():
     app.run(port=PORT)
+
+
+if __name__ == '__main__':
+    run()
+
