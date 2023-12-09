@@ -6,8 +6,8 @@ from detection.bird_detect import detect_bird, update_image
 from detection.detect_motion import detect_motion
 
 SAVE_DIR = "images-archive"
-webhook_url = 'https://f234-147-235-200-167.ngrok.io/detected'
-telegram_chat_id = '5712176020'
+webhook_url = 'https://----.ngrok.io/detected'
+telegram_chat_id = '----'
 
 
 if not os.path.exists(SAVE_DIR):

@@ -53,6 +53,14 @@ Ensure the following components and resources are available:
     ```
 3. Download the [YOLOv3 weights](https://github.com/patrick013/Object-Detection---Yolov3/blob/master/model/yolov3.weights) and place them in the designated `yolo_data` folder.
 4. Follow the steps below to create a new Telegram bot and obtain a token.
+5. Create URL in ngrok.io
+    ```bash
+    brew install ngrok/ngrok/ngrok
+    ngrok http 5002 
+    ```
+   
+   set 
+
 
 ### Creating a Telegram Bot and Obtaining Token
 
@@ -60,14 +68,18 @@ Ensure the following components and resources are available:
 2. Start a conversation with BotFather and type `/newbot` to create a new bot.
 3. Follow the prompts to choose a name and username for your bot.
 4. Once created, BotFather will provide a token for your bot. Copy this token.
-5. Replace the `TOKEN` placeholder in the Flask server script with the copied token.
+5. Replace the `TOKEN` placeholder in TelegramBot/server.py line 7
 
 ### Setting Up Webhook URL for the Telegram Bot
 
 1. Expose your local server to the internet using a service like ngrok.
-2. Start ngrok and obtain the public URL.
+2. Start ngrok and obtain the public URL 
+   - set "SERVER_URL" placeholder in TelegramBot/server.py line 7
 3. In your Telegram bot conversation with BotFather, use the `/setWebhook` command followed by your ngrok URL and the endpoint `/detected`.
-4. Update the `webhook_url` variable in the Flask server script with your ngrok URL.
+4. Update the `webhook_url` variable in detection/controller.py in line 9.
+5. Update the telegram_chat_id 
+
+6. Update the `telegram_chat_id` variable in detection/controller.py with the appropriate chat ID.
 
 ## Running the Detector
 
