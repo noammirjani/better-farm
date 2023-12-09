@@ -75,15 +75,18 @@ Ensure the following components and resources are available:
 
 - Start the Flask server:
     ```bash
-    python TelegramBot/main.py
+    python3 TelegramBot/server.py
     ```
-- Run the controller script to interact with the server.
+- Run the controller(client)
+    ```bash
+    python3 detection/controller.py 
+    ```
 
 ### Option 2: Running Both Server and Client
 
 - Execute the main detection script:
     ```bash
-    python main.py
+    python3 main.py
     ```
 - This automatically starts the Flask server and initiates the detection process.
 
